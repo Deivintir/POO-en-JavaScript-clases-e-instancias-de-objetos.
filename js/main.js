@@ -115,3 +115,67 @@ console.log(vehicle1.getpriceWithTax(.21));
 /**La manera de instanciar los objetos será similar a las funciones contrucoras que vimos en el apartado anterior; se usa
  * la palabra reservada "new", el nombre de la clase para invocar el método constructor de la misma y los valores que recibirán
  * las propiedades. */
+
+/**Herencia en clases JavaScript:
+ * Las nuevas clases de ECMAScript2015 también incorporan otras características de la programación orientada a objetos como
+ * la herencia, que permite extender las propiedades y objetos de una clase padre a una clase hijo, la palabra reservada "extends"
+ * más el identificador de la clase padre; posteriormente, dentro de la clase hijo, declara la referencia a las propiedades de la
+ * clase hijo con la incocación del método "super()" dentro del constructor.
+ * Ejemplo: */
+/**
+ * class idetifadorHijo extends IdentificadorPadre{
+ *  constructor(paramero1, parametro2){
+ *      super(propiedadPadre1, propiedadPadre2);
+ *  }
+ * }
+ */
+/**Para comprobar la sintaxis de herencia vamos a comenzar por escribir una clase padre: */
+class Trabajador{
+    name;
+    birthDate;
+
+    constructor(name, birthDate){
+        this.name = name;
+        this.birthDate = birthDate;
+    }
+    getName(){
+        return this.name;
+    }
+    setName(name){
+        this.name = name;
+    }
+    getAge(){
+        return Math.floor((new Date().getTime()
+                                - this.birthDate.getTime())/31536000000);                                
+    }
+}
+/**Esta clase Trabajador para instanciar objeto de datos de empleados dispone de dos propiedaes, "name" y "birthDate"
+ * que son usadas en el método constructor para recibir los valores de los parámetros del constructor. También
+ * se añaden tres métodos de clase, un set y get para la propiedad "nombre" y un get para devolver la edad a partir del 
+ * cálculo del valor de "birthDate" que tendrá la fecha de nacimiento.
+ *Esta clase como tal se podría usar para instanciar objetos, pero si necesitáramos usar sus propiedades y métodos 
+ en una clase hija "Manager", podríamos implementar la característica de herencia añadiéndola de la siguiente manera: */
+ class Manager extends Trabajador{
+    role;
+
+    constructor(name, birthDate, role){
+        super(name, birthDate);
+        this.role = role;
+    }
+ }
+ /**Y a continuación podríamos instanciar objetos de eta clase hija "Manager" que, gracias a que ha sido extendida
+  * de "Trabajador" y se han introducido las propiedades a través del método "super()" en el constructor, asignará los
+  * valores de los parámetros del constructor y se podrá usar el método "getAge()". Añadimos el siguiente bloque de código: */
+ let manager1 = new Manager('Juan López',new Date('1984-10-29'), 'venta');
+ console.log(manager1.getName());
+ console.log(manager1.getAge());
+ //Si ejecutamos el programa en el navegador, podemos comprobar los valores en la consola.
+
+ /**La herencia en JavaScript permite que la clase padre, si la convención del equipo de proyecto lo determina, pueda perfectamente
+  * ser usada directamente para instanciar objetos. En el ejemplo anterior podemos comprobarlo añadiendo el siguiente código:*/
+ let Trabajador1 = new Trabajador('Sara Pérez', new Date('1989-04-12'));
+ console.log(Trabajador1.getAge());
+ /**En la actualidad, la mayoría de los navegadores(y, por supuesto, Node.js) disponen de compatibilidad para clases y herencias debido
+  * a que ambas implementaciones han sido usaddas detro de TypeScript. Sin embargo, la comunidad de JavaScript preiere emplear esta
+  * sintaxis dentro de este superset de JavaScript que, además, aporta el tipado estricto de datos.
+  */
