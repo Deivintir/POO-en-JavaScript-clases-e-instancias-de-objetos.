@@ -54,3 +54,64 @@ console.log(player2.character);
  * se comporta como una clase de la que posteriormente se pueden instanciar todos los objetos que se necesiten
  * invocándola con la palabra "new" y pasándole como argumentos los valores de inicialización de las propiedades
  * que tendrá el nuevo objeto. */
+
+/**Clases ECMAScript2015:
+ * Desde esta especificación podemos crear clases según el concepto de la programación orientada a objetos
+ * en JavaScript, con una sintaxis que recoge la forma tradicional de uso de los objetos de este lenguaje pero
+ * que incorpora una estandarización para que todos los desarrolladores usemos la misma manera de utilizar objetos.
+ * 
+ * La sintaxis básica es el empleo de la palabra reservada "class", seguida del identificador de la clase, el cual
+ * es escrito habitualmente con la convencion "doubleCamelCase" y, entre llaves, las declaraciones de propiedades
+ * y métodos de la clase. 
+ * Ejemplo:*/
+/**class Identificador{
+    propiedad1;
+    propiedad2;
+    
+    constructor(parametro1, parametro2){
+        this.propiedad2 = parametro1;
+        this.propiedad1 = parametro2;
+    }
+    metodo(){
+        //Código con las propiedades.
+    }
+}
+let variable = new Identificador(argumento1,argumento2);*/
+/**Dentro de la clase se declaran las propiedades, un método constructor con los parámetros asignados a cada propiedad
+ * mediante la referencia "this" y, de la misma forma, los métodos que se necesiten implemenar.
+ * A pesar de que en el futuro está previsto implementar un mecanismo para que las propiedades sean privadas, de momento
+ * estas son públicas siempre.
+ * 
+ * La instancia de objeto de estas nuevas clases ECMAScript2015 se llevará a cabo con la sintaxis habitual,
+ * usando la palabra reservada "new" y el nombre de la clase que llamará a su método constructor al cual se le pasan los 
+ * argumentos requeridos.
+ * Ejemplo:*/
+class Vehicle{
+    brand;
+    model;
+    color;
+    price;
+
+    constructor(brandIn, modelIn, colorIn, priceIn){
+        this.brand = brandIn;
+        this.model = modelIn;
+        this.color = colorIn;
+        this.price = priceIn;
+    }
+
+    getColor(){
+        return this.color;
+    }
+    setColor(){
+        this.color = color;
+    }
+    getpriceWithTax(tax){
+        return this.price + this.price*tax;
+    }
+}
+let vehicle1 = new Vehicle('Renault', 'Megane', 'Gris', 12000);
+console.log(vehicle1);
+console.log(vehicle1.getpriceWithTax(.21));
+/**La manera de instanciar los objetos será similar a las funciones contrucoras que vimos en el apartado anterior; se usa
+ * la palabra reservada "new", el nombre de la clase para invocar el método constructor de la misma y los valores que recibirán
+ * las propiedades. */
